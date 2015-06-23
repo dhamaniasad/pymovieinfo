@@ -1,4 +1,4 @@
-import requests
+import urllib
 import json
 import argparse
 
@@ -11,8 +11,8 @@ movie = args.movie
 
 def get_info(movie):
     url = "http://www.omdbapi.com/?t={}&type=movie".format(movie)
-    r = requests.get(url)
-    data = json.loads(r.content)
+    r = urllib.urlopen(url)
+    data = json.loads(r.read())
     if data['Response'] == "True":
         movie_runtime = int(data['Runtime'].split()[0])
         rating = "{} stars from {} votes".format(data['imdbRating'], data['imdbVotes'])

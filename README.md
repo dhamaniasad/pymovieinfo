@@ -1,22 +1,15 @@
 # pymovieinfo
 Get information about any movie from the command line
 
+#### Installation
+
 ```
-$python pymovieinfo.py -h
-usage: pymovieinfo.py [-h] movie
-
-Get information about any movie from the command line
-
-positional arguments:
-  movie       Name of the movie you want information about
-
-optional arguments:
-  -h, --help  show this help message and exit
+pip install pymovieinfo
 ```
 
-#### Usage Example
+#### Usage
 ```
-$python pymovieinfo.py inception
+# movieinfo "inception"
 Movie: Inception
 Plot: A thief who steals corporate secrets through use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.
 Genre: Action, Mystery, Sci-Fi

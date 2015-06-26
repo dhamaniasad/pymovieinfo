@@ -1,4 +1,4 @@
-__version__ = 0.1
+__version__ = 0.2
 import urllib
 import json
 import argparse
@@ -7,19 +7,22 @@ import argparse
 
 def command_line_runner():
     parser = argparse.ArgumentParser(description='Get information about any movie from the command line')
-    parser.add_argument('movie', type=str, help="Name of the movie you want information about")
+    parser.add_argument('movie', type=str, nargs="*", help="Name of the movie you want information about")
     args = parser.parse_args()
-    movie = args.movie
-    movie_data = get_info(movie)
-    if movie_data is False:
-        print "Sorry, could not find a movie with that name :'("
+    if not args.movie:
+        parser.print_help()
     else:
-        print "Movie: {}".format(movie_data['title'])
-        print "Plot: {}".format(movie_data['plot'])
-        print "Genre: {}".format(movie_data['genre'])
-        print "Released: {}".format(movie_data['released'])
-        print "Runtime: {}".format(movie_data['runtime'])
-        print "IMDb rating: {}".format(movie_data['rating'])
+        movie = args.movie
+        movie_data = get_info(movie)
+        if movie_data is False:
+            print "Sorry, could not find a movie with that name :'("
+        else:
+            print "Movie: {}".format(movie_data['title'])
+            print "Plot: {}".format(movie_data['plot'])
+            print "Genre: {}".format(movie_data['genre'])
+            print "Released: {}".format(movie_data['released'])
+            print "Runtime: {}".format(movie_data['runtime'])
+            print "IMDb rating: {}".format(movie_data['rating'])
 
 
 def get_info(movie):
@@ -36,3 +39,7 @@ def get_info(movie):
         return movie_info
     else:
         return False
+
+
+if __name__ == '__main__':
+    command_line_runner()
